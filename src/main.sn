@@ -1,0 +1,6 @@
+
+unsafe external "C" func printf(f: *const u8) i32;
+
+public func test() {
+
+}

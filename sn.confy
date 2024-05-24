@@ -1,0 +1,7 @@
+
+project {
+  name: "std";
+  description: "Standard library for the Snowball programming language";
+  version: "0.1.0";
+  type: "lib";
+};  
