@@ -1,0 +1,66 @@
+
+/// @class String
+/// @brief A class that represents a string of characters.
+/// 
+/// This class is used as the base class of a simple string of characters
+/// that keeps track of its length and capacity. The class is designed
+/// to be used as a base class for a more complex string class that
+/// supports more advanced features.
+///
+/// @note This class will be extended if "std" is available.
+///
+/// This class's constructor will be called when creating a constant
+/// string value. 
+///
+/// @code
+/// let s = "Hello, World!";
+/// @endcode
+public class String implements ToString, Debug {
+  // TODO: finish this class
+
+  public virtual func to_string() String {
+    // TODO: implement this
+  }
+
+  public virtual func to_debug() String {
+    // TODO: implement this
+  }
+}
+
+/// @interface ToString
+/// @brief A protocol that defines a method to convert an object to a string.
+///
+/// The use of this interface is to try to create a common way to convert an
+/// object to a string. Any standard function that requires a string from an
+/// object should use this interface to do so.
+///
+/// @note `String` does implement this interface but it's return value will 
+///  just be the string itself. If you want the quoted string, you should
+///  `Debug` for that.
+public interface ToString {
+  /// @brief Converts the object to a string.
+  ///
+  /// This method will convert the object to a string. The string will be
+  /// the object's value as a string.
+  ///
+  /// @return The object as a string.
+  public func to_string() String;
+}
+
+/// @interface Debug
+/// @brief A protocol that defines a method to convert an object to a debug string.
+///
+/// The use of this interface is to try to create a common way to convert an
+/// object to a debug string. Any standard function that requires a debug string
+/// from an object should use this interface to do so.
+///
+/// @note `String` will implement this interface and return a quoted string.
+public interface Debug {
+  /// @brief Converts the object to a debug string.
+  ///
+  /// This method will convert the object to a debug string. The debug string
+  /// will be the object's value as a string but will be quoted.
+  ///
+  /// @return The object as a debug string.
+  public func to_debug() String;
+}
