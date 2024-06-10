@@ -1,0 +1,61 @@
+
+/// @interface Sized
+/// @brief Interface for objects that have a size
+///
+/// This interface is used to *proove* (mostly) that an object has a size.
+/// All classes and built-in types implement this interface (even when no
+/// explicitlty stated).
+/// 
+/// For example, `i32` implements this interface, and the size of `i32` is
+/// `4` bytes. In comparison, we can have `void` which does not implement
+/// this interface since it does not have a size at compile time.
+///
+/// Even though void does not have a size at compile time, we are still able
+/// to use it in the code by creating a pointer or a reference to it. This
+/// is because the size of a pointer or a reference is not the size of the
+/// object it points to, but the size of the address space.
+public interface Sized {
+  /* { - nothing - } */
+}
+
+/// @interface Clone 
+/// @brief A common interface for the ability to explicitly duplicate an object
+///
+/// The `Clone` interface allows for a value to be duplicated by calling the
+/// `clone` method. This method is used to create a new object with the same
+/// value as the original object. The new object is independent of the original
+/// object and can be used separately.
+///
+/// This allows for objects of different types to be
+/// duplicated in a consistent way.
+///
+/// For example, imagine we have a variable `a` of type `Foo` that implements
+/// the `Clone` interface. We can create a new variable `b` and assign the
+/// value of `a` to `b` by calling the `clone` method on `a`. 
+///
+/// ```sn
+/// let a = Foo;
+/// let b = a.clone(); // We can use `b` and `a` independently
+/// ```
+///
+/// If `Foo` did not implement the `Clone` interface, we would have to use
+/// move semantics to assign the value of `a` to `b`. This would leave `a`
+/// in an invalid state.
+///
+/// ```sn
+/// let a = Foo;
+/// let b = a; // `a` is now in an invalid state
+/// let c = a; // Error: `a` is in an invalid state
+/// ```
+public interface Clone<T: Sized> {
+  /// @brief Creates a new object with the same value as the original object
+  ///
+  /// This method creates a new object with the same value as the original
+  /// object. The new object is independent of the original object and can
+  /// be used separately.
+  ///
+  /// @return A new object with the same value as the original object
+  default public func clone() T {
+    return *self;
+  }
+}
