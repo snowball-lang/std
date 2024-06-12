@@ -14,6 +14,7 @@
 /// to use it in the code by creating a pointer or a reference to it. This
 /// is because the size of a pointer or a reference is not the size of the
 /// object it points to, but the size of the address space.
+#[snowball_builtin_item = "sized"]
 public interface Sized {
   /* { - nothing - } */
 }
@@ -58,4 +59,38 @@ public interface Clone<T: Sized> {
   default public func clone() T {
     return *self;
   }
+}
+
+/// @interface Copy
+/// @brief A common interface for the ability to implicitly duplicate a value
+///      using copy semantics
+///
+/// The `Copy` interface allows for a value to be duplicated implicitly by
+/// using copy semantics. This means that when a value is assigned to another
+/// variable, the value is copied to the new variable. The new variable is
+/// independent of the original variable and can be used separately.
+///
+/// This allows for objects of different types to be copied in a consistent way.
+///
+/// For example, imagine we have a variable `a` of type `Foo` that implements
+/// the `Copy` interface. We can create a new variable `b` and assign the
+/// value of `a` to `b` by using copy semantics.
+///
+/// ```sn
+/// let a = Foo;
+/// let b = a; // We can use `b` and `a` independently
+/// ```
+///
+/// If `Foo` did not implement the `Copy` interface, we would have to use
+/// move semantics to assign the value of `a` to `b`. This would leave `a`
+/// in an invalid state.
+///
+/// ```sn
+/// let a = Foo;
+/// let b = a; // `a` is now in an invalid state
+/// let c = a; // Error: `a` is in an invalid state
+/// ```
+#[snowball_builtin_item = "copy"]
+public interface Copy<T: Sized> {
+  /* { - nothing - } */
 }
