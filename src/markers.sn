@@ -56,9 +56,7 @@ public interface Clone<T: Sized> {
   /// be used separately.
   ///
   /// @return A new object with the same value as the original object
-  default public func clone() T {
-    return *self;
-  }
+  default public func clone() T; // We can do this as it's a built-in interface
 }
 
 /// @interface Copy

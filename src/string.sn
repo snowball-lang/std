@@ -17,6 +17,8 @@
 /// @endcode
 public class String implements ToString, Debug {
   // TODO: finish this class
+  init() {
+  }
 
   public virtual func to_string() String {
     // TODO: implement this
